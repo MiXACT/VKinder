@@ -18,8 +18,9 @@ class Pick_up:
             'sex': pers_info['sex'],
             'city': pers_info['city'],
             'status': 1,
-            'is_closed': False
-            # 'count': 25
+            'is_closed': False,
+            'offset': pers_info['offset'],
+            'count': pers_info['count']
         }
         return requests.get(vk_url, params=params).json()
 
@@ -31,6 +32,5 @@ class Pick_up:
             'owner_id': id,
             'album_id': 'profile',
             'extended': 1,
-            # 'count': 2
         }
         return requests.get(vk_url, params=params).json()
