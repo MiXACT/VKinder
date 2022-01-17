@@ -95,8 +95,9 @@ class Bot_chat:
                     else:
                         user_search = Pick_up(user_token)
                         search_result = user_search.find_friend(person)
-                        last_pers_id = vk_db.candidates_tab(search_result['response']['items'], last_pers_id + 1, db_init)
-                        for num, item in enumerate(search_result['response']['items']):
+                        candidates = search_result['response']['items']
+                        last_pers_id = vk_db.candidates_tab(candidates, last_pers_id + 1, db_init)
+                        for num, item in enumerate(candidates):
                             try:
                                 photos = user_search.friend_pics(item['id'])
                                 best_3_pics = self.best_pics(photos['response']['items'])
