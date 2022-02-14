@@ -1,6 +1,4 @@
 import sqlalchemy as sq
-from sqlalchemy.ext.declarative import declarative_base
-import psycopg2
 
 
 def db_engine(db_init):
@@ -9,10 +7,12 @@ def db_engine(db_init):
     connection = engine.connect()
     return connection
 
+
 def del_db(tab, db_init):
     connection = db_engine(db_init)
     connection.execute(f"TRUNCATE {tab} CASCADE;")
     return
+
 
 def candidates_tab(data_to_fill, last_id, db_init):
     connection = db_engine(db_init)
@@ -26,6 +26,7 @@ def candidates_tab(data_to_fill, last_id, db_init):
         except KeyError:
             continue
     return last_id + i
+
 
 def photo_tab(vk_id, pics, owner_num, last_id, db_init):
     connection = db_engine(db_init)

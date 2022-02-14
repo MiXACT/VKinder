@@ -1,4 +1,4 @@
-import requests, vk_api
+import requests
 import db_gen
 from bot import Bot_chat
 
@@ -17,17 +17,15 @@ def user_info(id, user_token):
 if __name__ == '__main__':
     group_token = input('Group token (для активации бота из группы ВК): ')
     token = input('Personal token (для доступа к поиску людей ВК): ')
-    user_id = int(input('Ваш id ВК: '))#24308
+    user_id = int(input('Ваш id ВК: '))
 
     session = requests.Session()
     login, password = 'Ваш телефон', 'Ваш пароль'
-
 
     db_init = db_gen.get_db_info()
 
     partner = {'sex': 0, 'age_from': 18, 'age_to': 100, 'message': '', 'offset': 0, 'count': 10}
     partner['city'] = user_info(user_id, group_token)['response'][0]['city']['id']
-    #вместо 'answer_counter': 0 использован ключ - ID пользователя ВК: 0
     partner[user_id] = 0
 
     bot = Bot_chat(group_token)
